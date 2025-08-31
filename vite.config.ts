@@ -11,16 +11,16 @@ export default defineConfig({
       ? [await import("@replit/vite-plugin-cartographer").then(m => m.cartographer())]
       : []),
   ],
-  root: "client",              // expects client/index.html (now lowercase)
+  root: "Client",              
   resolve: {
     alias: {
-      "@": path.resolve(__dirname, "client", "src"),
-      "@shared": path.resolve(__dirname, "shared"),
+      "@": path.resolve(__dirname, "Client", "src"),
+      "@shared": path.resolve(__dirname, "Shared"),
       "@assets": path.resolve(__dirname, "attached_assets"),
     },
   },
   build: {
-    outDir: "dist",             // outputs to client/dist (matches netlify.toml)
+    outDir: "dist",             
     emptyOutDir: true,
   },
   server: {
