@@ -1,7 +1,7 @@
 [build]
   command = "npm run build"
-  publish = "dist"
-
+  publish = "client/dist"
+         
 [functions]
   external_node_modules = ["express", "multer", "@neondatabase/serverless"]
   node_bundler = "esbuild"
