@@ -1,11 +1,6 @@
 [build]
   command = "npm run build"
   publish = "client/dist"
-         
-[functions]
-  external_node_modules = ["express", "multer", [build]
-  command = "npm run build"
-  publish = "client/dist"
 
 [build.environment]
   NODE_VERSION = "20"
