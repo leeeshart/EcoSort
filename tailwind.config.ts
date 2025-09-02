@@ -52,7 +52,7 @@ export default {
           "5": "var(--chart-5)",
         },
         sidebar: {
-          DEFAULT: "var(--sidebar)",
+          DEFAULT: "var(--sidebar-background)",
           foreground: "var(--sidebar-foreground)",
           primary: "var(--sidebar-primary)",
           "primary-foreground": "var(--sidebar-primary-foreground)",
@@ -61,15 +61,12 @@ export default {
           border: "var(--sidebar-border)",
           ring: "var(--sidebar-ring)",
         },
-        // Waste category colors
-        recyclable: "var(--recyclable)",
-        biodegradable: "var(--biodegradable)",
-        hazardous: "var(--hazardous)",
       },
       fontFamily: {
         sans: ["var(--font-sans)"],
         serif: ["var(--font-serif)"],
         mono: ["var(--font-mono)"],
+        pixel: ["var(--font-pixel)"],
       },
       keyframes: {
         "accordion-down": {
@@ -88,21 +85,49 @@ export default {
             height: "0",
           },
         },
-        "slide-in-from-bottom-4": {
-          from: {
-            transform: "translateY(1rem)",
-            opacity: "0",
+        bounce: {
+          "0%, 20%, 53%, 80%, 100%": {
+            transform: "translate3d(0, 0, 0)",
           },
-          to: {
-            transform: "translateY(0)",
-            opacity: "1",
+          "40%, 43%": {
+            transform: "translate3d(0, -8px, 0)",
+          },
+          "70%": {
+            transform: "translate3d(0, -4px, 0)",
+          },
+          "90%": {
+            transform: "translate3d(0, -2px, 0)",
+          },
+        },
+        wiggle: {
+          "0%, 7%": {
+            transform: "rotateZ(0)",
+          },
+          "15%": {
+            transform: "rotateZ(-15deg)",
+          },
+          "20%": {
+            transform: "rotateZ(10deg)",
+          },
+          "25%": {
+            transform: "rotateZ(-10deg)",
+          },
+          "30%": {
+            transform: "rotateZ(6deg)",
+          },
+          "35%": {
+            transform: "rotateZ(-4deg)",
+          },
+          "40%, 100%": {
+            transform: "rotateZ(0)",
           },
         },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
-        "slide-in-from-bottom-4": "slide-in-from-bottom-4 0.5s ease-out",
+        "character-bounce": "bounce 2s infinite",
+        "character-wiggle": "wiggle 1.5s ease-in-out infinite",
       },
     },
   },
