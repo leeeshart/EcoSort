@@ -1,77 +1,63 @@
-import { Card, CardContent } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { Recycle, Leaf, AlertTriangle, ArrowRight } from "lucide-react";
+import PixelCharacter from "./pixel-character";
 
 export default function EducationalTips() {
   const tips = [
     {
-      title: "Recycling Tips",
+      id: "recycling",
+      character: "recyclable" as const,
+      title: "RECYCLING",
       description: "Clean containers before recycling. Remove caps and labels when possible. Check local recycling guidelines.",
-      icon: Recycle,
-      bgGradient: "from-blue-50 to-blue-100",
-      borderColor: "border-blue-200",
-      textColor: "text-blue-900",
-      buttonColor: "text-blue-600 hover:text-blue-800",
-      iconBg: "bg-blue-600",
+      theme: "recyclable-theme",
+      color: "text-green-400"
     },
     {
-      title: "Composting Guide",
+      id: "composting",
+      character: "biodegradable" as const,
+      title: "COMPOSTING",
       description: "Create nutrient-rich soil with organic waste. Mix browns and greens for optimal decomposition.",
-      icon: Leaf,
-      bgGradient: "from-green-50 to-green-100",
-      borderColor: "border-green-200",
-      textColor: "text-green-900",
-      buttonColor: "text-green-600 hover:text-green-800",
-      iconBg: "bg-green-600",
+      theme: "biodegradable-theme",
+      color: "text-yellow-400"
     },
     {
-      title: "Hazardous Disposal",
+      id: "hazardous",
+      character: "hazardous" as const,
+      title: "HAZARDOUS",
       description: "Never put hazardous items in regular trash. Find certified disposal centers in your area.",
-      icon: AlertTriangle,
-      bgGradient: "from-orange-50 to-orange-100",
-      borderColor: "border-orange-200",
-      textColor: "text-orange-900",
-      buttonColor: "text-orange-600 hover:text-orange-800",
-      iconBg: "bg-orange-600",
-    },
+      theme: "hazardous-theme",
+      color: "text-red-400"
+    }
   ];
 
   return (
-    <div className="grid md:grid-cols-3 gap-6 mb-12">
-      {tips.map((tip, index) => {
-        const Icon = tip.icon;
-        
-        return (
-          <Card 
-            key={tip.title}
-            className={`bg-gradient-to-br ${tip.bgGradient} border ${tip.borderColor} shadow-sm`}
-            data-testid={`tip-card-${index}`}
-          >
-            <CardContent className="p-6">
-              <div className="flex items-center space-x-3 mb-4">
-                <div className={`w-10 h-10 ${tip.iconBg} rounded-full flex items-center justify-center`}>
-                  <Icon className="h-5 w-5 text-white" />
-                </div>
-                <h4 className={`text-lg font-semibold ${tip.textColor}`} data-testid={`tip-title-${index}`}>
-                  {tip.title}
-                </h4>
-              </div>
-              <p className={`${tip.textColor} text-sm mb-4 opacity-90`} data-testid={`tip-description-${index}`}>
-                {tip.description}
-              </p>
-              <Button 
-                variant="ghost" 
-                size="sm" 
-                className={`${tip.buttonColor} transition-colors p-0 h-auto font-medium`}
-                data-testid={`tip-button-${index}`}
-              >
-                Learn More 
-                <ArrowRight className="h-3 w-3 ml-1" />
-              </Button>
-            </CardContent>
-          </Card>
-        );
-      })}
-    </div>
+    <section className="mt-16">
+      <h2 className="text-3xl pixel-font text-center text-primary mb-12" data-testid="educational-title">
+        WASTE MANAGEMENT GUIDE
+      </h2>
+      
+      <div className="grid md:grid-cols-3 gap-8">
+        {tips.map((tip) => (
+          <div key={tip.id} className={`result-card ${tip.theme} p-6`} data-testid={`tip-card-${tip.id}`}>
+            <div className="flex items-center gap-3 mb-4">
+              <PixelCharacter 
+                type={tip.character} 
+                size="medium" 
+                animation="bounce"
+                data-testid={`tip-character-${tip.id}`}
+              />
+              <h3 className={`pixel-font text-lg ${tip.color}`}>{tip.title}</h3>
+            </div>
+            <p className="text-sm font-mono text-foreground leading-relaxed mb-4" data-testid={`tip-description-${tip.id}`}>
+              {tip.description}
+            </p>
+            <button 
+              className="pixel-button px-4 py-2 pixel-font text-xs text-black w-full"
+              data-testid={`button-learn-more-${tip.id}`}
+            >
+              LEARN MORE
+            </button>
+          </div>
+        ))}
+      </div>
+    </section>
   );
 }
